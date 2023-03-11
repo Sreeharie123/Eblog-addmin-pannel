@@ -1,0 +1,282 @@
+<div class="md:px-48 py-10 bg-slate-800">
+  <div class="flex flex-col items-center gap-2 mb-5">
+    <p class="text-4xl font-serif text-green-500">{{formStatus}} Post</p>
+    <p class="text-xl text-white">You can {{formStatus}} your new posts</p>
+  </div>
+
+
+
+  <div *ngIf="postForm">
+  <form [formGroup]="postForm"  (ngSubmit)="onSubmit()">
+    <div class="w-full flex mb-12 p-5 md:flex-row flex-col">
+      <div class="md:w-[42rem] flex flex-col gap-2">
+        <label for="title" class="font-sans text-lg text-white">Title</label>
+        <mat-form-field class="example-form-field bg-transparent">
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="clear1"
+            class="h-12 bg-white border-none"
+            name="title"
+            (keyup)="onTitleChanged($event)"
+            formControlName="title"
+          />
+
+          <div *ngIf="fc.title.errors?.required">
+            <div
+              class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative w-full mt-4"
+              role="alert"
+              *ngIf="fc.title.touched && fc.title.invalid"
+            >
+              <strong class="font-bold">Title is required </strong>
+              <span class="block sm:inline">Please enter the title.</span>
+              <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                <svg
+                  class="fill-current h-6 w-6 text-red-500"
+                  role="button"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <title>Close</title>
+                  <path
+                    d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+                  />
+                </svg>
+              </span>
+            </div>
+          </div>
+
+          <div *ngIf="fc.title.errors?.minlength">
+            <div
+              class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative w-full mt-4"
+              role="alert"
+              *ngIf="fc.title.touched && fc.title.invalid"
+            >
+              <strong class="font-bold">Title is required </strong>
+              <span class="block sm:inline">
+                Title must be at least 10 charactors long.</span
+              >
+              <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                <svg
+                  class="fill-current h-6 w-6 text-red-500"
+                  role="button"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <title>Close</title>
+                  <path
+                    d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+                  />
+                </svg>
+              </span>
+            </div>
+          </div>
+
+          <button
+            *ngIf="clear1"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="clear1 = ''"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <label for="link" class="font-sans text-lg text-white">Permalink</label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="permalink"
+          class="h-16 bg-blue-100 border-none pointer-events-none"
+          formControlName="permalink"
+        />
+
+        <label class="font-sans text-lg text-white">Except</label>
+
+        <input
+          matInput
+          type="text"
+          class="h-60 bg-white border-none"
+          name="except"
+          formControlName="except"
+        />
+
+        <div *ngIf="fc.except.errors?.required">
+          <div
+            class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative w-full mt-4"
+            role="alert"
+            *ngIf="fc.except.touched && fc.except.invalid"
+          >
+            <strong class="font-bold">exept is required </strong>
+            <span class="block sm:inline">Please enter the exept.</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+              <svg
+                class="fill-current h-6 w-6 text-red-500"
+                role="button"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <title>Close</title>
+                <path
+                  d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <div *ngIf="fc.except.errors?.minlength">
+          <div
+            class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative w-full mt-4"
+            role="alert"
+            *ngIf="fc.except.touched && fc.except.invalid"
+          >
+            <strong class="font-bold">exept is required </strong>
+            <span class="block sm:inline">
+              Title must be at least 50 charactors long.</span
+            >
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+              <svg
+                class="fill-current h-6 w-6 text-red-500"
+                role="button"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <title>Close</title>
+                <path
+                  d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-1 md:px-12 flex flex-col gap-2">
+        <label for="post category" class="font-sans text-lg text-white"
+          >Plese Select the post Category</label
+        >
+
+        <select
+          class="w-full h-[4.5rem] rounded-md border border-slate-600 bg-white"
+          formControlName="categories"
+        >
+          <option *ngFor="let item of categories" value="{{item.id}}-{{item.data.category}}">
+            {{ item.data.category }}
+          </option>
+        </select>
+
+        <div *ngIf="fc.categories.errors?.required">
+          <div
+            class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative w-full mt-4"
+            role="alert"
+            *ngIf="fc.categories.touched && fc.categories.invalid"
+          >
+            <strong class="font-bold">Category is required </strong>
+            <span class="block sm:inline">Please selecct the category.</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+              <svg
+                class="fill-current h-6 w-6 text-red-500"
+                role="button"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <title>Close</title>
+                <path
+                  d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <label for="post image" class="font-sans text-lg text-white"
+          >Post Image</label
+        >
+        <img [src]="imgsrc" class="h-[18rem] object-contain" />
+        <input
+          type="file"
+          class="w-full h-[4.5rem] rounded-md border border-slate-600 bg-white"
+          accept="image/*"
+          (change)="showPreview($event)"
+          formControlName="postimg"
+        />
+
+        <div *ngIf="fc.postimg.errors?.required">
+          <div
+            class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative w-full mt-4"
+            role="alert"
+            *ngIf="fc.postimg.touched && fc.postimg.invalid"
+          >
+            <strong class="font-bold">Image is required </strong>
+            <span class="block sm:inline"
+              >Please selecct the Image from you gallary.</span
+            >
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+              <svg
+                class="fill-current h-6 w-6 text-red-500"
+                role="button"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <title>Close</title>
+                <path
+                  d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-5 flex flex-col gap-4">
+      <label for="content" class="font-sans text-lg text-white">Content</label>
+      <angular-editor
+        placeholder="Add your content here"
+        class="bg-white w-full p-6"
+        formControlName="content"
+      ></angular-editor>
+
+      <div *ngIf="fc.content.errors?.required">
+        <div
+          class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative w-full mt-4"
+          role="alert"
+          *ngIf="fc.content.touched && fc.content.invalid"
+        >
+          <strong class="font-bold">Content is required </strong>
+          <span class="block sm:inline">Please enter the content.</span>
+          <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+            <svg
+              class="fill-current h-6 w-6 text-red-500"
+              role="button"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <title>Close</title>
+              <path
+                d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="w-full flex gap-4 justify-center">
+        <button
+          class="w-fit h-fit bg-green-700 px-4 py-3 rounded-md text-white text-xl shadow-md" [disabled]="postForm.invalid"[ngClass]="{'bg-transparent':postForm.invalid}"
+        >
+          {{formStatus}} Post
+        </button>
+        <button
+          class="w-fit h-fit bg-yellow-400 px-4 py-3 rounded-md text-black text-xl shadow-md" routerLink="/post"
+        >
+          Back to Post
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+</div>

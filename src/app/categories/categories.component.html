@@ -1,0 +1,116 @@
+<div class="md:px-48 md:pt-10 px-8">
+  <div
+    class="flex flex-col items-center md:gap-6 mt-10 bg-slate-100 shadow-inner py-14 rounded-lg"
+  >
+    <div class="flex flex-col gap-1 justify-center items-center px-4 py-4">
+      <p class="md:text-5xl text-3xl text-gray-600">
+        {{ formStatus }} Categories
+      </p>
+      <p class="md:text-lg text-gray-500">
+        You can {{ formStatus }} new categories from here ...!
+      </p>
+    </div>
+    <form
+      class="flex gap-2 flex-col md:flex-col justify-center items-center"
+      #categoryForm="ngForm"
+      (ngSubmit)="onSubmit(categoryForm)"
+    >
+      <input
+        type="text"
+        name="category"
+        class="md:w-[75rem] h-16 border shadow-inner rounded px-4"
+        placeholder="Add a new item"
+        #newcategory="ngModel"
+        required
+        [(ngModel)]="formCategory"
+        [ngClass]="{
+          'border border-red-400 text-red-700':
+            newcategory.touched && newcategory.invalid
+        }"
+      />
+      <div
+        class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative w-full"
+        role="alert"
+        *ngIf="newcategory.touched && newcategory.invalid"
+      >
+        <strong class="font-bold">Invalid category</strong>
+        <span class="block sm:inline">Please enter the valid category.</span>
+        <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+          <svg
+            class="fill-current h-6 w-6 text-red-500"
+            role="button"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            (click)="close()"
+          >
+            <title>Close</title>
+            <path
+              d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+            />
+          </svg>
+        </span>
+      </div>
+
+      <button
+        *ngIf="categoryForm.invalid; else success"
+        class="w-fit h-fit md:px-8 px-6 py-4 md:py-5 bg-gradient-to-r from-teal-700 to-[#5c626d] text-white rounded-lg md:text-xl"
+        [disabled]="categoryForm.invalid"
+      >
+        {{ formStatus }} Category
+      </button>
+      <ng-template #success>
+        <button
+          class="w-fit h-fit md:px-8 px-6 py-4 md:py-5 bg-gradient-to-r from-teal-700 to-[#12428f] text-white rounded-lg md:text-xl"
+        >
+          {{ formStatus }} Category
+        </button>
+      </ng-template>
+    </form>
+  </div>
+
+  <div
+    class="md:px-20 md:py-10 bg-slate-100 shadow-inner mt-4 flex justify-center mb-4 rounded-lg"
+  >
+    <table class="rounded-md overflow-hidden bg-slate-50 shadow-inner">
+      <thead>
+        <tr class="border h-16">
+          <th
+            class="bg-red-400 md:w-24 w-16 flex h-16 items-center pl-3 md:pl-10"
+          >
+            No
+          </th>
+          <th class="bg-green-400 md:w-96 w-36">Category</th>
+          <th class="bg-orange-400 md:w-72 w-36">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border h-16" *ngFor="let item of categoryArray; index as i">
+          <td
+            class="border border-collapse md:w-24 w-16 flex h-16 items-center pl-3 md:pl-10 border-none max-md:mt-4"
+          >
+            {{ i + 1 }}
+          </td>
+          <td class="border border-collapse md:w-96 w-36 md:pl-20">
+            {{ item.data.category }}
+          </td>
+          <td
+            class="border border-collapse md:w-72 w-36 md:pl-20 flex gap-2 border-none md:flex-row flex-col"
+          >
+            <button
+              class="w-fit h-fit bg-yellow-400 px-3 py-1 rounded-md text-black text-xl shadow-md"
+              (click)="onEdit(item.data.category, item.id)"
+            >
+              Edit
+            </button>
+            <button
+              class="w-fit h-fit bg-red-400 px-3 py-1 rounded-md text-black text-xl shadow-md"
+              (click)="onDelete(item.id)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
