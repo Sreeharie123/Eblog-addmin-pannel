@@ -28,6 +28,8 @@ constructor(private authService:AuthService){
 userEmail?:string;
 isLoggedIn$?:Observable<boolean>
 
+
+
 element(value:boolean){
   this.trueelement=!value
 }

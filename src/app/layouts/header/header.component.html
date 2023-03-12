@@ -17,8 +17,8 @@
   <p class="text-2xl text-green-600 mt-3"> <i>Eblogs</i></p>
 </div>
 
-<div class="md:hidden w-1/2 h-screen bg-slate-100 absolute z-20" *ngIf="trueelement">
-  <div class="flex flex-col items-center">
+<div class="md:hidden w-1/2 h-screen bg-slate-100 absolute z-20" *ngIf="trueelement ">
+  <div class="flex flex-col items-center" *ngIf="isLoggedIn$|async">
     <p class="text-lg mt-3 text-blue-600">{{userEmail}}</p>
     <button class="bg-red-500 w-fit h-fit px-4 py-2 rounded-lg text-yellow-50 text-lg hover:bg-green-900" (click)="logOut(trueelement)">LogOut</button>
   </div>

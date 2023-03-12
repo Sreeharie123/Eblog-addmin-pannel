@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {AngularFireStorageModule} from '@angular/fire/compat/storage';
 import { LoginComponent } from './auth/login/login.component'
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AuthenticationGuard } from './Guard/authentication.guard';
 
 @NgModule({
   declarations: [
@@ -46,10 +47,10 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     ReactiveFormsModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    AngularFireAuthModule 
+    AngularFireAuthModule ,
 
   ],
-  providers: [],
+  providers: [AuthenticationGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
