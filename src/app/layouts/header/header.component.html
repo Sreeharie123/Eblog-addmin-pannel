@@ -1,5 +1,25 @@
-<header class="h-fit flex justify-center bg-slate-50 items-center max-md:hidden shadow-md">
+<header class="h-fit flex justify-between bg-slate-50 items-center max-md:hidden shadow-md px-10">
   <div class="h-20 w-56 flex justify-center items-center overflow-hidden rounded-full border border-green-600">
       <img src="./../../../assets/logo.png" class="object-fill">
     </div>
+    <div class="flex items-center gap-3" *ngIf="isLoggedIn$|async">
+      <p class="text-lg mt-3 text-blue-600">{{userEmail}}</p>
+      <button class="bg-red-500 w-fit h-fit px-4 py-2 rounded-lg text-yellow-50 text-lg hover:bg-green-700" (click)="logOut(trueelement)">LogOut</button>
+    </div>
 </header>
+
+<div class="md:hidden flex w-full h-14 items-center gap-20 px-4">
+  <div class="w-10 h-10 bg-slate-200 flex justify-center items-center rounded-lg hover:bg-green-400" (click)="element(trueelement)">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+  </svg>
+</div>
+  <p class="text-2xl text-green-600 mt-3"> <i>Eblogs</i></p>
+</div>
+
+<div class="md:hidden w-1/2 h-screen bg-slate-100 absolute z-20" *ngIf="trueelement">
+  <div class="flex flex-col items-center">
+    <p class="text-lg mt-3 text-blue-600">{{userEmail}}</p>
+    <button class="bg-red-500 w-fit h-fit px-4 py-2 rounded-lg text-yellow-50 text-lg hover:bg-green-900" (click)="logOut(trueelement)">LogOut</button>
+  </div>
+</div>
