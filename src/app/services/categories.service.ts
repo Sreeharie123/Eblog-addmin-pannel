@@ -39,19 +39,22 @@ export class CategoriesService {
       );
   }
 
-
-  updateData(id:any,editedData:any){
-  this.firestore.doc(`categories/${id}`).update(editedData ).then(docref=>{
-    this.toastr.success('Data updated Successfully ..!');
-    console.log(docref)
-  })
-
+  updateData(id: any, editedData: any) {
+    this.firestore
+      .doc(`categories/${id}`)
+      .update(editedData)
+      .then((docref) => {
+        this.toastr.success('Data updated Successfully ..!');
+        console.log(docref);
+      });
   }
 
-
-  deleteData(id:string){
- this.firestore.doc(`categories/${id}`).delete().then(docref=>{
-    this.toastr.success('Data deleted Successfully ..!');
- })
+  deleteData(id: string) {
+    this.firestore
+      .doc(`categories/${id}`)
+      .delete()
+      .then((docref) => {
+        this.toastr.success('Data deleted Successfully ..!');
+      });
   }
 }
