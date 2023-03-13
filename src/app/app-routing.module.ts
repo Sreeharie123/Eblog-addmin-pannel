@@ -6,6 +6,7 @@ import { DashbordComponent } from './dashbord/dashbord.component';
 import { AuthenticationGuard } from './Guard/authentication.guard';
 import { AllPostComponent } from './posts/all-post/all-post.component';
 import { NewPostComponent } from './posts/new-post/new-post.component';
+import { SubscribersComponent } from './subscribers/subscribers.component';
 
 const routes: Routes = [
   {path:'',component:DashbordComponent,canActivate:[AuthenticationGuard]},
@@ -14,6 +15,8 @@ const routes: Routes = [
 
   {path:"post",component:AllPostComponent,canActivate:[AuthenticationGuard]},
   {path:"post/new",component:NewPostComponent,canActivate:[AuthenticationGuard]},
+
+  {path:"subscribers",component:SubscribersComponent},
   {path:"**",redirectTo:"login",pathMatch:"full"}
 
 ];

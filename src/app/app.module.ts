@@ -21,6 +21,7 @@ import {AngularFireStorageModule} from '@angular/fire/compat/storage';
 import { LoginComponent } from './auth/login/login.component'
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AuthenticationGuard } from './Guard/authentication.guard';
+import { SubscribersComponent } from './subscribers/subscribers.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AuthenticationGuard } from './Guard/authentication.guard';
     AllPostComponent,
     NewPostComponent,
     LoginComponent,
+    SubscribersComponent,
   ],
   imports: [
     BrowserModule,
