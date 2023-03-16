@@ -26,6 +26,7 @@ export class AuthService {
           this.router.navigate(['/'])
     }).catch((e)=>{
          this.tostr.warning(e)
+         this.tostr.success("please SignUp")
     })
 
    }

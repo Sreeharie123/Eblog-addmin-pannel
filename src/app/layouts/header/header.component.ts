@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
 
 
 trueelement:boolean=false
+signUpButton:boolean=true
 
 // @Output()visible=new EventEmitter()
 
@@ -26,7 +27,7 @@ constructor(private authService:AuthService){
 }
 
 userEmail?:string;
-isLoggedIn$?:Observable<boolean>
+isLoggedIn$?:any
 
 
 
@@ -47,7 +48,11 @@ ngOnInit(){
 
   //or
 
-  this.isLoggedIn$=this.authService.isLoggedIn()
+  this.isLoggedIn$=this.authService.isLoggedIn().subscribe((data)=>{
+
+    this.signUpButton=!data
+
+  })
 
 }
 
