@@ -37,7 +37,7 @@ element(value:boolean){
 
 
 
-ngOnInit(){
+ngOnInit():void{
 
   this.userEmail = JSON.parse(localStorage.getItem('User')||'{}').email
 
