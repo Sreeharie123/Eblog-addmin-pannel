@@ -51,6 +51,7 @@ ngOnInit():void{
   this.isLoggedIn$=this.authService.isLoggedIn().subscribe((data)=>{
 
     this.signUpButton=!data
+    console.log("hai",this.signUpButton)
 
   })
 
