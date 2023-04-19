@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "eblogapp"
+  },
+  "targets": {
+    "eblogapp": {
+      "hosting": {
+        "adminblog": [
+          "blogapp-admin"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
